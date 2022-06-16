@@ -10,8 +10,7 @@ def home(request):
 	content = {'form': form}
 	return render(request, 'checkbook/index.html', content)
 
-def create_account(request):
-	return render(request, 'checkbook/CreateNewAccount.html')
+
 
 def balance(request, pk):
 	account = get_object_or_404(Account, pk=pk) # get object or present error
@@ -28,8 +27,6 @@ def balance(request, pk):
 	content = {'account': account, 'table_contents': table_contents, 'balance': current_total} # create dictionary
 	return render(request, 'checkbook/BalanceSheet.html', content)
 
-def transaction(request):
-	return render(request, 'checkbook/AddTransaction.html')
 
 
 def create_account(request):
@@ -54,7 +51,7 @@ def transaction(request):
 			form.save()
 			return balance(request, pk)
 	content = {'form': form}
-	return render(request, 'checkbook/CreateNewAccount.html', content)
+	return render(request, 'checkbook/AddTransaction.html', content)
 	""" Pull all fields from a transaction and puts inside variable form. Then checks if
 		request method is post and if it is it well redirect user to index page. 
 		Then sends them to create a new account"""
